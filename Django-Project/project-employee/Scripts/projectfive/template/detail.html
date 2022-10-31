@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <title>Employee details</title>
+</head>
+<body>
+  <h1>Employee list:</h1>
+{% if empdata %}
+  <table>
+    <thead>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>salary</th>
+    </thead>
+  {% for emp in empdata %}
+    <tr>
+      <td>{{ emp.firstName }}</td>
+      <td>{{ emp.lastName }}</td>
+      <td>{{ emp.salary }}</td>
+    </tr>
+  {% endfor %}
+
+  </table>
+  {% else %}
+  <p> NO RECORDS FOUND</p>
+{% endif %}
+</body>
+
+</html>

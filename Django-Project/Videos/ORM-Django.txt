@@ -120,5 +120,57 @@ USING LOGICAL OPERATORS
 >>> print(s)
 <QuerySet [<employee: employee object (1)>, <employee: employee object (3)>, <employee: employee object (6)>, <employee: employee object (7)>]>
 --------------------------------------------------------------------------------
+AND:
+C:\Users\DELL\Visual code\Django-Project\projectfive\env\Scripts\projectfive>python manage.py shell
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import employee
+>>> a=employee.objects.filter(FirstName__startswith='sa')& employee.objects.filter(LastName__startswith='ku')
+>>> print(a)
+<QuerySet [<employee: employee object (3)>]>
+>>> a=employee.objects.filter(FirstName__startswith='ash')& employee.objects.filter(LastName__startswith='ku')
+>>> print(a)
+<QuerySet [<employee: employee object (1)>]>
+>>> a=employee.objects.filter(FirstName__startswith='ma')& employee.objects.filter(LastName__startswith='ku')
+>>> print(a)
+<QuerySet []>
+------------------------------------------------------------------------------------------------------------------
+SELECT colums:
+ emp=employee.objects.all().values('FirstName')
+>>> print(emp)
+<QuerySet [{'FirstName': 'ashok'}, {'FirstName': 'vijay'}, {'FirstName': 'sampath'}, {'FirstName': 'santhos'}, {'FirstName': 'sagar'}, {'FirstName': 'vinod'}, {'FirstName': 'bharath'}, {'FirstName': 'david'}, {'FirstName': 'john'}, {'FirstName': 'suresh'}]>
+>>> emp=employee.objects.all().values('LastName')
+>>> print(emp)
+<QuerySet [{'LastName': 'kumar'}, {'LastName': 'varma'}, {'LastName': 'kumar'}, {'LastName': 'babu'}, {'LastName': 'naidu'}, {'LastName': 'kumar'}, {'LastName': 'kumar'}, {'LastName': 'roy'}, {'LastName': 'wilson'}, {'LastName': 'sharma'}]>
+>>> emp=employee.objects.all().values('salary')
+>>> print(emp)
+<QuerySet [{'salary': 10000}, {'salary': 2000}, {'salary': 3000}, {'salary': 4000}, {'salary': 50000}, {'salary': 25000}, {'salary': 70000}, {'salary': 80000}, {'salary': 60000}, {'salary': 20000}]>
+-----------------------------------------------------------------------------------------------
+AGGREGATE FUNCTION
+
+C:\Users\DELL\Visual code\Django-Project\projectfive\env\Scripts\projectfive>python manage.py shell
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from app1.models import employee
+>>> from django.db.models import Avg,Sum,Max,Min,Count
+>>> avg=employee.objects.all().aggregate(Avg('salary'))
+>>> print(avg)
+{'salary__avg': 32400.0}
+>>> avg=employee.objects.all().aggregate(Sum('salary'))
+>>> print(avg)
+{'salary__sum': 324000}
+>>> avg=employee.objects.all().aggregate(Max('salary'))
+>>> print(avg)
+{'salary__max': 80000}
+>>> min=employee.objects.all().aggregate(Min('salary'))
+>>> print(min)
+{'salary__min': 2000}
+>>> count=employee.objects.all().aggregate(Count('salary'))
+>>> print(count)
+{'salary__count': 10}
+------------------------------------------------------------------------------------------------------------------------
+
 
 

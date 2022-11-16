@@ -5,13 +5,13 @@
     <title></title>
   </head>
   <body>
-    <h1>Student entry form</h1>
-    <form method="post">
+    <h1>Student Details Form</h1>
+    <form method='POST'>
     <table>
-      {{form.as_table}}
-      {% csrf_token %}
+    {{form.as_table}}
+    {% csrf_token %}
     </table><br/>
-      <input type="button" name="" value="button">
+    <input type='submit'  name="" value='submit' />
     </form>
   </body>
 </html>

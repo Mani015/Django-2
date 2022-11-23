@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>student form:</title>
+  </head>
+  <body>
+    <h1>Student Form</h1>
+    <table border='2'>
+      <thead>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>marks</th>
+        <th>standard</th>
+      </thead>
+      {% for i in x %}
+      <tr>
+        <td>{{ i.FirstName }}</td>
+        <td>{{ i.LastName }}</td>
+        <td>{{ i.Marks }}</td>
+        <td>{{ i.standard }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br/><br/>
+    <a href="/create">add studnet</a>
+  </body>
+</html>
